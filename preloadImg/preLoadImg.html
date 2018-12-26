@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>图片预加载</title>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.1.min.js"></script>
+    <script src="js/preload.js"></script>
+    <style>
+        .drop-point-box {
+            color: rgba(255, 255, 255, 0);
+            width: 100%;
+            display: none;
+            background-color: #573636;
+        }
+        
+        .drop-point-box .textcontainer {
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .drop-point-box .particletext {
+            text-align: center;
+            font-size: 48px;
+            position: relative;
+        }
+        
+        .drop-point-box .particletext.bubbles>.particle {
+            opacity: 0;
+            position: absolute;
+            /*background-color: rgba(33, 150, 243, 0.5);*/
+            background-color: rgba(250, 250, 4, 0.5);
+            -webkit-animation: bubbles 3s ease-in infinite;
+            animation: bubbles 3s ease-in infinite;
+            border-radius: 100%;
+        }
+        
+        @-webkit-keyframes bubbles {
+            0% {
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+                -webkit-transform: translate(0, -20%);
+                transform: translate(0, -20%);
+            }
+            100% {
+                opacity: 0;
+                -webkit-transform: translate(0, -1000%);
+                transform: translate(0, -1000%);
+            }
+        }
+        
+        @keyframes bubbles {
+            0% {
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+                -webkit-transform: translate(0, 20%);
+                transform: translate(0, 20%);
+            }
+            100% {
+                opacity: 0;
+                -webkit-transform: translate(0, 1000%);
+                transform: translate(0, 1000%);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <p></p>
+    <!--加载页特效-->
+    <div class="drop-point-box loading-com">
+        <div class="textcontainer">
+            <span class="particletext bubbles"><span class="text">________</span></span>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $(".loading-com").show();
+            jQuery.rnd = function(m, n) {
+                m = parseInt(m);
+                n = parseInt(n);
+                return Math.floor(Math.random() * (n - m + 1)) + m;
+            };
+
+            function showLoadingBubbles() {
+                $.each($(".particletext.bubbles"), function() {
+                    var bubblecount = ($(this).find(".text").width() / 50) * 10;
+                    for (var i = 0; i <= bubblecount; i++) {
+                        var size = $.rnd(6, 12);
+                        $(this).append('<span class="particle" style="top:' + $.rnd(20, 80) + '%; left:' + $.rnd(0,
+                            95) + '%;width:' + size + 'px; height:' + size + 'px;animation-delay: ' + ($.rnd(
+                            0, 30) / 10) + 's;"></span>');
+                    }
+                });
+            }
+            showLoadingBubbles();
+            // 图片预加载
+            var loader = new resLoader({
+                resources: ["https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1545650379116&di=72d087d40bbefd507ded887c17f874b9&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dshijue1%252C0%252C0%252C294%252C40%2Fsign%3D4af020d471cb0a46912f837a030a9c51%2Ff31fbe096b63f6242d63fb2d8d44ebf81a4ca3e6.jpg",
+                    "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1545650379115&di=2b4b16de14fe2c9d13c1110c61bf5f77&imgtype=0&src=http%3A%2F%2Fwww.tupperware.com.cn%2Ffileserver%2Fproduct%2F201407%2F2014-7-24_15-14-16_979_401_b.jpg",
+                    "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1545650379113&di=4b09229ae14dcf62ef8b29027620d81d&imgtype=0&src=http%3A%2F%2Fimages.freeimages.com%2Fimages%2Fpremium%2Fpreviews%2F1102%2F11029265-rosa-tulpen-mit-tupfen.jpg",
+                    "http://d.hiphotos.baidu.com/image/pic/item/caef76094b36acaf6d1e855571d98d1000e99c98.jpg",
+                    "http://d.hiphotos.baidu.com/image/pic/item/9825bc315c6034a84d0cf125c6134954082376a3.jpg",
+                    "http://b.hiphotos.baidu.com/image/pic/item/faf2b2119313b07e93a465b501d7912397dd8c75.jpg",
+                    "http://g.hiphotos.baidu.com/image/pic/item/91529822720e0cf34984ee590746f21fbe09aa25.jpg",
+                    "http://c.hiphotos.baidu.com/image/pic/item/2f738bd4b31c870173d4b35d2a7f9e2f0708ff2f.jpg",
+                    "http://a.hiphotos.baidu.com/image/pic/item/241f95cad1c8a786f97802aa6a09c93d71cf50c7.jpg",
+                    "http://f.hiphotos.baidu.com/image/pic/item/95eef01f3a292df5ed91e4b1b1315c6035a873c7.jpg",
+                    "http://a.hiphotos.baidu.com/image/pic/item/9825bc315c6034a8769fea3dc613495409237608.jpg"
+                ],
+                onStart: function() {},
+                onProgress: function(current, total) {
+                    var curRate = current / total;
+                    console.log('curRate', curRate);
+                    $("p").html(curRate.toFixed(2));
+
+                },
+                onComplete: function() {
+
+                }
+            });
+            loader.start();
+        })
+    </script>
+</body>
+
+</html>
