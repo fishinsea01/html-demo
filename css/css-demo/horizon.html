@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>水平居中</title>
+    <style>
+     body>div{
+        height: 100px;
+        color: white;
+        margin-top:10px
+        }
+        .box1{
+            width:100%;
+            text-align: center;
+            background-color: rgba(230, 20, 20, 0.9);
+        }
+        .box2{
+            width:100%;
+            background-color: rgba(28, 241, 74, 0.9);
+            text-align: center;
+        }
+        .box2 .cell{
+            width:60%;
+            background-color: rgb(98, 158, 158);
+            margin:0 auto;
+        }
+        .box3{
+            width:100%;
+            text-align: center;
+            background-color: rgba(123, 194, 216, 0.9);
+        }
+        .box3 table{
+            margin:0 auto;
+        }
+        .box4 {
+            float: left;
+            position: relative;
+            left: 50%;
+        }
+        .box4 .cell{
+            position: relative;
+            background-color: rgba(8, 98, 233, 0.9);
+            left: -50%;
+        }
+        .box5{
+            width:100%;
+            display: flex;
+            justify-content: center;
+            background-color: rgba(27, 163, 140, 0.9);
+        }
+        .box6{
+            position: relative;
+            width:100%;
+            background-color: rgba(21, 197, 21, 0.9);
+        }
+        .box6 .cell{
+            position:absolute;
+            top:0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .summary{
+        color: black;
+        text-align: left;
+        margin-left: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">
+        <i>text-align: center;</i>比较常用
+    </div>
+    <div class="box2">
+        <div class="cell"><i>margin:0 auto;</i></div>
+    </div>
+    <div class="box3">
+        <table>
+            <tbody><tr><td>利用table 实现居中,table 设置 <i>margin:0 auto;</i></td></tr></tbody>
+        </table>
+    </div>
+    <div class="box4">
+        <div class="cell">
+        父子元素都采用相对定位，父元素left:50%;子元素left:-50%;相对自己的长度减回50%，这样实现向右偏移后拉回多的部分。
+        </div>
+    </div>
+    <div class="box5">
+        利用flex特性
+    </div>
+    <div class="box5">
+            利用flex特性
+    </div>
+    <div class="box6">
+            <div class="cell">父元素：<i>position: relative;</i>子元素：<i>position:absolute;top:0;left: 50%;transform: translateX(-50%);</i></div>
+    </div>
+    <div class="summary">
+            总结下：
+            <br>  
+            1：行内元素的居中采用text-align:center;设置即可。
+            <br> 
+            2：marin:0 auto;方便的实现已知宽度的水平居中。
+            <br>
+            3:在元素外嵌套table实现，但是这样会有很多层嵌套 
+            <br>
+            4：对于最普通的水平居中采用相对定位后设置left：50%;后再采用各种方式去实现自身水平差的补回。
+            <br>    
+            5：用css3的Flexbox属性  
+            <br>
+            6：transform 进行编译
+    </div>
+</body>
+</html>

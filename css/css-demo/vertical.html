@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>垂直居中</title>
+    <style>
+    body>div{
+        height: 100px;
+        color: white;
+        width:100%;
+        text-align: center;
+        margin-top:10px
+    }
+    .box1{
+        background-color: rgba(248, 46, 10, 0.6);
+        display: table;
+    }
+    .box1 .cell{
+        display: table-cell;
+        vertical-align: middle;
+    }
+    .box2{
+        position: relative;
+        background-color: rgba(42, 45, 231, 0.6);
+    }
+    .box2 .cell{
+        position: absolute;
+        top:50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+    .box3{
+        background-color: rgba(19, 224, 47, 0.6);
+    }
+    .box3 .cell{
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .summary{
+        color: black;
+        text-align: left;
+        margin-left: 15px;
+    }
+    </style>
+</head>
+<body>
+    <div class="box1">
+        <div class="cell">demo1  父元素：<i>display: table;</i> 子元素:<i>display: table-cell;vertical-align: middle;</i></div>
+    </div>
+    <div class="box2">
+        <div class="cell">demo2  父元素：<i> position: relative;</i> 子元素:<i>position: absolute;
+                top:50%;
+                left: 50%;
+                transform: translate(-50%,-50%);</i>子元素采用了绝对定位后再left，top50%，再用css3的transform属性用translate(-50%,-50%)来补回原来的自身的高度差实现垂直居中</div>
+    </div>
+    <div class="box3">
+        <div class="cell">css3<i>display: flex;</i>实现设置属性值：<i>align-items: center;justify-content: center;</i>。来实现垂直与水平的居中。注意设置高度：<i>height: 100%;</i></div>
+    </div>
+    <div class="summary">
+            总结下：其实实现垂直居中只有一下几种思路：
+            <br>
+            1：已知元素高度垂直居中height值与line-height设置为一样即可。
+            <br>
+            2：采用绝对定位后设置left：50%;top:：50%后,transform: translate(-50%,-50%);补回差距，translate的百分比，是相对于元素自身
+            <br>
+            3：用css3的flex属性
+    </div>
+</body>
+</html>

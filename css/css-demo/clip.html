@@ -1,0 +1,48 @@
+<html>
+<head>
+<style type="text/css">
+.clip_a{display:block; width:128px; height:128px;background:blue;}
+.clip_a img{border:0; position:absolute; clip:rect(0 128px 128px 0);}
+.clip_a:hover{border:0;}
+.clip_a:hover img{ margin-top:-128px;clip:rect(128px 128px 256px 0);}
+table.dataintable {
+    margin-top: 15px;
+    border-collapse: collapse;
+    border: 1px solid #aaa;
+    width: 100%;
+}
+tr td{
+    border: 1px solid #aaa;
+}
+</style>
+</head>
+
+<body>
+<h3>所有主流浏览器都支持 clip 属性。</h3>
+<table class="dataintable">
+        <tbody><tr>
+        <th>值</th>
+        <th>描述</th>
+        </tr>
+        
+        <tr>
+        <td><i>shape</i></td>
+        <td>设置元素的形状。唯一合法的形状值是：rect (<i>top</i>, <i>right</i>, <i>bottom</i>, <i>left</i>)</td>
+        </tr>
+        
+        <tr>
+        <td>auto</td>
+        <td>默认值。不应用任何剪裁。</td>
+        </tr>
+        
+        <tr>
+        <td>inherit</td>
+        <td>规定应该从父元素继承 clip 属性的值。</td>
+        </tr>
+        </tbody></table>
+<a href="javascript:" class="clip_a">
+    <img src="http://image.zhangxinxu.com/image/blog/201104/sofa_sprite.png" />
+</a>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/test.css">
+    <script src="script/md5.js"></script>
+    <script src="script/crypto-js.js"></script>
+    <script src="script/dealEncry.js"></script>
+    <script src="script/jquery.js"></script>
+    <script src="script/formatjson.js"></script>
+    <script src="script/test.js?v=1"></script>
+</head>
+
+<body>
+    <h2 class="title">DES加密测试页面</h2>
+    <div class="content">
+        <div>
+            <span>请求地址：</span>
+            <input id="url" type="text" value="https://msd.umq.cn/api/v1/gateway">
+        </div>
+        <div>
+            <span>AppKey：</span>
+            <input id="appkey" type="text" value="727EE1D14AB274A0E050A8C0EBC85194">
+        </div>
+        <div>
+            <span>key：</span>
+            <input id="key" type="text" value="live1234">
+        </div>
+        <div>
+            <span>请求报文：</span>
+            <input type="button" id="request" value="发送请求">
+        </div>
+        <div class="area">
+            <textarea name="" id="qe" cols="30" placeholder="明文" rows="10"></textarea>
+            <div class="btn">
+                <input type="button" id="qencode" value="加密》">
+                <br>
+                <input type="button" id="qdecode" value="《解密">
+            </div>
+            <textarea name="" id="qd" cols="30" placeholder="密文" rows="10"></textarea>
+        </div>
+        <div>
+            <span>返回报文：</span>
+        </div>
+        <div class="area">
+            <textarea name="" id="pe" cols="30" placeholder="明文" rows="10"></textarea>
+        </div>
+    </div>
+</body>
+
+</html>
